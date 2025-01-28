@@ -10,6 +10,7 @@
   color: white;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: left 0.3s ease; /* Transición suave para mostrar/ocultar */
+  overflow-y: auto; /* Habilita el scroll vertical */
 }
 
 .sidebar.open {
@@ -121,7 +122,7 @@
 }
 
 .submenu-toggle:hover {
-  background-color: #34495e;
+  background-color: #63768a;
   border-radius: 5px;
 }
 
