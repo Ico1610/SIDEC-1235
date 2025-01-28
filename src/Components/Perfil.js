@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -14,6 +15,7 @@ const Perfil = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [changePassword, setChangePassword] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -27,12 +29,12 @@ const Perfil = () => {
             text: "No estás autenticado. Inicia sesión.",
             icon: "error",
           });
-          window.location.href = "/login"; // Redirigir al login si no está autenticado
+          history.push("/login"); // Redirigir al login si no está autenticado
           return;
         }
 
         // Solicitar datos del perfil con el token en el encabezado
-        const response = await axios.get("http://localhost:3001/profile", {
+        const response = await axios.get("http://localhost:3001/perfil", {
           headers: {
             Authorization: `Bearer ${token}`, // Autorización con el token
           },
@@ -52,7 +54,7 @@ const Perfil = () => {
     };
 
     fetchUserData();
-  }, []); // Ejecutar solo una vez al montar el componente
+  }, [history]); // Ejecutar solo una vez al montar el componente
 
   const handleChangePassword = (e) => {
     setChangePassword(e.target.value === "SI"); // Cambiar el estado si el usuario quiere cambiar la contraseña
@@ -83,7 +85,7 @@ const Perfil = () => {
         throw new Error("No estás autenticado.");
       }
 
-      const response = await axios.post("http://localhost:3001/profile", updatedData, {
+      const response = await axios.post("http://localhost:3001/perfil", updatedData, {
         headers: {
           Authorization: `Bearer ${token}`, // Enviar el token en la cabecera
         },
@@ -94,7 +96,7 @@ const Perfil = () => {
           title: "Perfil actualizado",
           icon: "success",
         }).then(() => {
-          window.location.href = "/main"; // Redirigir al usuario a la página principal
+          history.push("/main"); // Redirigir al usuario a la página principal
         });
       } else {
         Swal.fire({
@@ -112,6 +114,7 @@ const Perfil = () => {
     }
   };
 
+  // Si está cargando o hubo un error
   if (loading) return <div>Cargando...</div>;
 
   if (error) return <div>{error}</div>;

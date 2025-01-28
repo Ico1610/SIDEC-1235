@@ -10,21 +10,22 @@ const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de inicio de sesión
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      // Si ya hay un token, el usuario ya está autenticado.
+    const token = localStorage.getItem('token');
+    
+    if (token) {
       setIsLoggedIn(true);
-    } else {
-      // Mostrar el mensaje de bienvenida solo si no está autenticado
-      if (!isLoggedIn) {
-        Swal.fire({
-          title: 'BIENVENIDO',
-          text: 'Por favor, inicie sesión para continuar.',
-          icon: 'info',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-        });
-      }
+      // Si ya tiene un token, redirige directamente al main sin mostrar la alerta
+      window.location.href = '/main';
+    } else if (!isLoggedIn) {
+      // Mostrar la alerta de bienvenida solo si no está autenticado
+      Swal.fire({
+        title: 'BIENVENIDO',
+        text: 'Por favor, inicie sesión para continuar.',
+        icon: 'info',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
     }
   }, [isLoggedIn]);
 
@@ -99,13 +100,6 @@ const Login = () => {
     }
   };
 
-  // Función para manejar el cierre de sesión
-  const handleLogout = () => {
-    localStorage.removeItem('token'); // Eliminar el token del localStorage
-    setIsLoggedIn(false); // Actualizar el estado de login
-    window.location.href = '/'; // Redirigir al login
-  };
-
   return (
     <div className="container-fluid">
       <div className="card">
@@ -115,12 +109,7 @@ const Login = () => {
         />
         <h1>Sistema Integral de Denuncias Ciudadana</h1>
         {isLoggedIn ? (
-          <div>
-            <h2>Bienvenido, {username}!</h2>
-            <button onClick={handleLogout} className="btn">
-              Cerrar sesión
-            </button>
-          </div>
+          <h2>Bienvenido, {username}!</h2>
         ) : (
           <form onSubmit={handleLogin}>
             <label className="form-label" htmlFor="username">
