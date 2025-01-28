@@ -92,6 +92,20 @@ const App = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("authToken"); // Elimina el token del almacenamiento local
+    Swal.fire({
+      title: "Sesión cerrada",
+      text: "Has cerrado sesión correctamente.",
+      icon: "success",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+    navigate("/login"); // Redirige al login
+  };
+  
+
+
   return (
     <Router>
       <div className="App">

@@ -1,12 +1,20 @@
 import React from 'react';
+import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom'; // Usamos useNavigate en lugar de useHistory
 
 const LogoutButton = () => {
   const navigate = useNavigate(); // Usamos useNavigate para la redirección
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Eliminar el token del localStorage
-    navigate('/'); // Redirigir al login
+    localStorage.removeItem("authToken");
+    Swal.fire({
+      title: "Sesión cerrada",
+      text: "Has cerrado sesión correctamente.",
+      icon: "success",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+    navigate("/login");
   };
 
   return (
