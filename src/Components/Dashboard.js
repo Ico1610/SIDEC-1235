@@ -3,10 +3,7 @@ import '../styles/Dashboard.css';
 
 const data = [
   {
-    name: "(BEBELECHE) BEBELECHE, MUSEO INTERACTIVO DE DURANGO",
-    sancionadas: 0,
-    cerradas: 0,
-    proceso: 0,
+  
   },
   {
     name: "(BYCENED) ESCUELA NORMAL DEL ESTADO DE DURANGO",
