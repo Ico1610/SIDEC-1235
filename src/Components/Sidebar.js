@@ -51,7 +51,8 @@ const Sidebar = () => {
           />
           <h1>Sistema Integral</h1>
         </div>
-
+          
+          {/* Pagina de Inicio */}
         <ul className="sidebar-list">
           <li className="sidebar-item">
             <a href="/main" className="sidebar-link">
@@ -188,6 +189,7 @@ const Sidebar = () => {
             )}
           </li>
 
+            {/* Perfil de Usuario */}
           <li className="sidebar-item">
             <a href="/perfil" className="sidebar-link">
               <FaUser className="sidebar-icon" /> Perfil

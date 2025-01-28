@@ -8,6 +8,7 @@ const Main = () => {
     <div className="app-container">
       <div className="sidebar-container">
         <Sidebar /> {/* Aquí agregamos el Sidebar */}
+        
       </div>
       <div className="main-content-container">
         <Dashboard /> {/* Se renderiza el contenido del Dashboard */}

@@ -16,21 +16,25 @@
   left: 0; /* Hace visible la barra lateral */
 }
 
-/* Encabezado de la barra lateral */
+/* Estilo para el encabezado de la barra lateral */
 .sidebar-header {
-  text-align: center;
-  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 10px;
+  border-bottom: 1px solid #5ebfddcf;
 }
 
 .sidebar-logo {
-  width: 210px;
-  height: auto;
-  margin-bottom: 10px;
+  max-width: 210px;
+  margin-bottom: 20px;
 }
 
-.sidebar h2 {
-  font-size: 18px;
+.sidebar-header h1 {
+  font-size: 25px;
+  text-align: center;
   font-weight: bold;
+  color: #f1faee;
   margin: 0;
 }
 
