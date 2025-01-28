@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from './Components/Sidebar';
+import Dashboard from './Components/Dashboard'; // Importa el archivo Dashboard.js
 
 const Main = () => {
   return (
@@ -8,9 +9,7 @@ const Main = () => {
         <Sidebar /> {/* Aquí agregamos el Sidebar */}
       </div>
       <div className="main-content-container">
-        <h1>Bienvenido al sistema</h1>
-        <p>Este es el contenido principal de la aplicación.</p>
-        {/* Aquí puedes agregar más contenido según lo necesites */}
+        <Dashboard /> {/* Se renderiza el contenido del Dashboard */}
       </div>
     </div>
   );

@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 import '../styles/Sidebar.css';
-import { FaChevronDown, FaChevronUp, FaHome, FaFileAlt, FaPoll, FaCog, FaUser, FaRegFileAlt, FaTools } from 'react-icons/fa';
+import { 
+  FaChevronDown, 
+  FaChevronUp, 
+  FaHome, 
+  FaFileAlt, 
+  FaPoll, 
+  FaCog, 
+  FaUser, 
+  FaRegFileAlt, 
+  FaTools, 
+  FaUserPlus, 
+  FaUsersCog, 
+  FaFolderPlus 
+} from 'react-icons/fa';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false); // Controla la barra lateral
@@ -99,7 +112,7 @@ const Sidebar = () => {
                       </li>
                       <li className="submenu-item">
                         <a href="/encuestas/opcion3" className="submenu-link">
-                          <FaRegFileAlt className="sidebar-icon" /> Servicios de educacion
+                          <FaRegFileAlt className="sidebar-icon" /> Servicios de educación
                         </a>
                       </li>
                     </ul>
@@ -121,17 +134,17 @@ const Sidebar = () => {
               <ul className="submenu-list">
                 <li className="submenu-item">
                   <a href="/advanced/option1" className="submenu-link">
-                    <FaTools className="sidebar-icon" /> Nuevo Usuario
+                    <FaUserPlus className="sidebar-icon" /> Nuevo Usuario
                   </a>
                 </li>
                 <li className="submenu-item">
                   <a href="/advanced/option2" className="submenu-link">
-                    <FaTools className="sidebar-icon" /> Mantto. Usuarios
+                    <FaUsersCog className="sidebar-icon" /> Mantto. Usuarios
                   </a>
                 </li>
                 <li className="submenu-item">
                   <a href="/advanced/option3" className="submenu-link">
-                    <FaTools className="sidebar-icon" /> Nuevo Módulo
+                    <FaFolderPlus className="sidebar-icon" /> Nuevo Módulo
                   </a>
                 </li>
                 <li className="submenu-item">
