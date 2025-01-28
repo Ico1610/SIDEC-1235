@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from './Components/Sidebar';
+import LogoutButton from './Components/LogoutButton';
 import Dashboard from './Components/Dashboard'; // Importa el archivo Dashboard.js
 
 const Main = () => {
@@ -10,6 +11,9 @@ const Main = () => {
       </div>
       <div className="main-content-container">
         <Dashboard /> {/* Se renderiza el contenido del Dashboard */}
+      </div>
+      <div>
+        <LogoutButton />
       </div>
     </div>
   );

@@ -10,11 +10,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <Routes>
-        {/* Ruta para la página de inicio de sesión */}
+      <Routes> {/* Rutas para funcionalidad de inicio y botones de menús */}
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
-        {/* Ruta para la página principal (main) */}
         <Route path="/main" element={<Main />} />
       </Routes>
     </Router>
