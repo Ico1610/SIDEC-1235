@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom'; // Usamos useNavigate para redirigir
 import './styles/login.css';
 
 const Login = () => {
@@ -8,14 +9,16 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false); // Visibilidad de contraseña
   const [loading, setLoading] = useState(false); // Indicador de carga
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de inicio de sesión
+  const navigate = useNavigate(); // Hook de navegación de react-router-dom
 
+  // Comprobamos si hay un token al cargar la página
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
     
     if (token) {
       setIsLoggedIn(true);
       // Si ya tiene un token, redirige directamente al main sin mostrar la alerta
-      window.location.href = '/main';
+      navigate('/main');
     } else if (!isLoggedIn) {
       // Mostrar la alerta de bienvenida solo si no está autenticado
       Swal.fire({
@@ -27,7 +30,7 @@ const Login = () => {
         timerProgressBar: true,
       });
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]); // Añadimos navigate al arreglo de dependencias
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -61,7 +64,7 @@ const Login = () => {
 
       if (data.success) {
         // Almacenar el token JWT en localStorage
-        localStorage.setItem('token', data.token);
+        localStorage.setItem("authToken", data.token); // Asegúrate de usar `data.token`
 
         setIsLoggedIn(true); // Cambiar estado a "iniciado sesión"
 
@@ -79,7 +82,7 @@ const Login = () => {
 
         // Redirigir al usuario después del éxito
         setTimeout(() => {
-          window.location.href = '/main';
+          navigate('/main'); // Redirige a la página principal con useNavigate
         }, 2000); // Espera para asegurar que se vea la alerta
       } else {
         Swal.fire({

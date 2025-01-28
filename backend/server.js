@@ -2,6 +2,8 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
+const perfilRoutes = require('../src/routes/perfil'); // Importar las rutas del perfil
 require('dotenv').config(); // Cargar variables de entorno desde un archivo .env
 
 const app = express();
@@ -14,8 +16,14 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'], // Permitir headers específicos como Authorization
 };
 
-app.use(cors(corsOptions)); // Usar las opciones de CORS
-app.use(express.json());  // Para que Express pueda parsear los JSON recibidos
+// Usar CORS
+app.use(cors(corsOptions));
+
+// Middleware para procesar JSON en el cuerpo de la solicitud
+app.use(bodyParser.json());
+
+// Usar las rutas de perfil protegidas con JWT
+app.use('/api', perfilRoutes);
 
 // Configuración de la base de datos
 const dbConfig = {
@@ -84,8 +92,27 @@ app.post('/login', (req, res) => {
   });
 });
 
-// Ruta para actualizar el perfil del usuario
-app.post('/profile', verifyToken, (req, res) => {
+// Ruta para manejar el perfil (requiere JWT)
+app.use('/perfil', verifyToken, (req, res) => {
+  const userId = req.user.id; // Obtener el id del usuario desde el token
+
+  const query = 'SELECT id, username, nombre, correo, telefono FROM usuarios WHERE id = ?';
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error('Error al ejecutar la consulta:', err);
+      return res.status(500).json({ success: false, message: 'Error del servidor.' });
+    }
+
+    if (results.length > 0) {
+      res.json({ success: true, user: results[0] }); // Devolver la información del usuario
+    } else {
+      res.status(404).json({ success: false, message: 'Usuario no encontrado.' });
+    }
+  });
+});
+
+// Ruta para actualizar el perfil
+app.post('/perfil', verifyToken, (req, res) => {
   const { id, nombre, correo, telefono, password } = req.body;
 
   let query = 'UPDATE usuarios SET nombre = ?, correo = ?, telefono = ? WHERE id = ?';
@@ -104,25 +131,6 @@ app.post('/profile', verifyToken, (req, res) => {
 
     if (results.affectedRows > 0) {
       res.json({ success: true, message: 'Perfil actualizado correctamente.' });
-    } else {
-      res.status(404).json({ success: false, message: 'Usuario no encontrado.' });
-    }
-  });
-});
-
-// Ruta para obtener el perfil del usuario (protegida por el token)
-app.get('/profile', verifyToken, (req, res) => {
-  const userId = req.user.id; // Obtener el id del usuario desde el token
-
-  const query = 'SELECT id, username, nombre, correo, telefono FROM usuarios WHERE id = ?';
-  db.query(query, [userId], (err, results) => {
-    if (err) {
-      console.error('Error al ejecutar la consulta:', err);
-      return res.status(500).json({ success: false, message: 'Error del servidor.' });
-    }
-
-    if (results.length > 0) {
-      res.json({ success: true, user: results[0] }); // Devolver la información del usuario
     } else {
       res.status(404).json({ success: false, message: 'Usuario no encontrado.' });
     }
