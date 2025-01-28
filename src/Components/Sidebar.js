@@ -8,11 +8,16 @@ import {
   FaPoll, 
   FaCog, 
   FaUser, 
-  FaRegFileAlt, 
   FaTools, 
   FaUserPlus, 
   FaUsersCog, 
-  FaFolderPlus 
+  FaFolderPlus,
+  FaFileSignature,
+  FaClipboardCheck,
+  FaChartBar,
+  FaBuilding,
+  FaHeartbeat,
+  FaGraduationCap
 } from 'react-icons/fa';
 
 const Sidebar = () => {
@@ -75,17 +80,17 @@ const Sidebar = () => {
                     <ul className="submenu-list">
                       <li className="submenu-item">
                         <a href="/denuncia/opcion1" className="submenu-link">
-                          <FaRegFileAlt className="sidebar-icon" /> Captura
+                          <FaFileSignature className="sidebar-icon" /> Captura
                         </a>
                       </li>
                       <li className="submenu-item">
                         <a href="/denuncia/opcion2" className="submenu-link">
-                          <FaRegFileAlt className="sidebar-icon" /> Control Denuncias
+                          <FaClipboardCheck className="sidebar-icon" /> Control Denuncias
                         </a>
                       </li>
                       <li className="submenu-item">
                         <a href="/denuncia/opcion3" className="submenu-link">
-                          <FaRegFileAlt className="sidebar-icon" /> Estadisticas
+                          <FaChartBar className="sidebar-icon" /> Estadisticas
                         </a>
                       </li>
                     </ul>
@@ -102,22 +107,49 @@ const Sidebar = () => {
                     <ul className="submenu-list">
                       <li className="submenu-item">
                         <a href="/encuestas/opcion1" className="submenu-link">
-                          <FaRegFileAlt className="sidebar-icon" /> Servicios Generales
+                          <FaBuilding className="sidebar-icon" /> Servicios Generales
                         </a>
                       </li>
                       <li className="submenu-item">
                         <a href="/encuestas/opcion2" className="submenu-link">
-                          <FaRegFileAlt className="sidebar-icon" /> Servicios de Salud
+                          <FaHeartbeat className="sidebar-icon" /> Servicios de Salud
                         </a>
                       </li>
                       <li className="submenu-item">
                         <a href="/encuestas/opcion3" className="submenu-link">
-                          <FaRegFileAlt className="sidebar-icon" /> Servicios de educación
+                          <FaGraduationCap className="sidebar-icon" /> Servicios de educación
                         </a>
                       </li>
                     </ul>
                   )}
-                </li>
+                </li>  
+                <li className="submenu-item">
+                  <button
+                    className="submenu-link submenu-toggle"
+                    onClick={() => toggleSubmenu('buzones')}
+                  >
+                    <FaPoll className="sidebar-icon" /> Control de buzones {submenus['buzones'] ? <FaChevronUp /> : <FaChevronDown />}
+                  </button>
+                  {submenus['buzones'] && (
+                    <ul className="submenu-list">
+                      <li className="submenu-item">
+                        <a href="/buzones/opcion1" className="submenu-link">
+                          <FaFileSignature className="sidebar-icon" /> Captura
+                        </a>
+                      </li>
+                      <li className="submenu-item">
+                        <a href="/buzones/opcion2" className="submenu-link">
+                          <FaClipboardCheck className="sidebar-icon" /> Control de Buzones
+                        </a>
+                      </li>
+                      <li className="submenu-item">
+                        <a href="/buzones/opcion3" className="submenu-link">
+                          <FaChartBar className="sidebar-icon" /> Estadisticas
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </li>     
               </ul>
             )}
           </li>
