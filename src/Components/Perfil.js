@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -16,68 +16,86 @@ const Perfil = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [changePassword, setChangePassword] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
+  // Función para obtener los datos del usuario
   useEffect(() => {
     const fetchUserData = async () => {
+      const token = localStorage.getItem("authToken"); // Obtener el token de localStorage
+
+      if (!token) {
+        Swal.fire({
+          title: "Error",
+          text: "No estás autenticado. Inicia sesión.",
+          icon: "error",
+        });
+        navigate("/login"); // Redirigir al login si no hay token
+        return;
+      }
+
       try {
-        const token = localStorage.getItem("authToken"); // Obtener el token de localStorage
-
-        // Si no hay token, redirigir al login
-        if (!token) {
-          Swal.fire({
-            title: "Error",
-            text: "No estás autenticado. Inicia sesión.",
-            icon: "error",
-          });
-          history.push("/login"); // Redirigir al login si no está autenticado
-          return;
-        }
-
         // Solicitar datos del perfil con el token en el encabezado
         const response = await axios.get("http://localhost:3001/perfil", {
           headers: {
-            Authorization: `Bearer ${token}`, // Autorización con el token
+            Authorization: `Bearer ${token}`,
           },
         });
 
-        // Verificar si la respuesta es exitosa
         if (response.data.success) {
-          setUserData(response.data.user); // Cargar datos del perfil
+          setUserData(response.data.user); // Cargar los datos del perfil
         } else {
-          setError(response.data.message || "Error al obtener los datos del perfil.");
+          throw new Error(response.data.message || "Error al obtener los datos del perfil.");
         }
       } catch (err) {
-        setError("Error al obtener los datos del perfil.");
+        console.error("Error al obtener los datos del perfil:", err); // Log para depuración
+        setError(err.response?.data?.message || "Hubo un problema al obtener los datos del perfil.");
       } finally {
-        setLoading(false); // Detener el cargado
+        setLoading(false); // Detener la carga
       }
     };
 
     fetchUserData();
-  }, [history]); // Ejecutar solo una vez al montar el componente
+  }, [navigate]);
 
-  const handleChangePassword = (e) => {
-    setChangePassword(e.target.value === "SI"); // Cambiar el estado si el usuario quiere cambiar la contraseña
+  // Maneja el clic del botón "Regresar"
+  const handleGoBack = () => {
+    navigate("/main"); // Redirige a la página principal
   };
 
+  // Maneja el cambio de la contraseña
+  const handleChangePassword = (e) => {
+    setChangePassword(e.target.value === "SI");
+  };
+
+  // Maneja el cambio de los datos del perfil
   const handleInputChange = (e) => {
     setUserData({
       ...userData,
-      [e.target.name]: e.target.value, // Actualizar los campos del perfil
+      [e.target.name]: e.target.value,
     });
   };
 
+  // Enviar los datos actualizados
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+    e.preventDefault();
 
-    // Preparar los datos a enviar (incluir la contraseña solo si el usuario la está cambiando)
+    // Validación básica
+    if (!userData.nombre || !userData.correo || !userData.telefono) {
+      Swal.fire({
+        title: "Error",
+        text: "Todos los campos son obligatorios.",
+        icon: "error",
+      });
+      return;
+    }
+
+    // Preparar los datos a enviar (incluye la contraseña solo si el usuario la está cambiando)
     const updatedData = {
       id: userData.id,
       nombre: userData.nombre,
       correo: userData.correo,
       telefono: userData.telefono,
-      password: changePassword ? password : "", // Solo se incluye si se cambia la contraseña
+      password: changePassword ? password : "", // Solo incluir la contraseña si se va a cambiar
     };
 
     try {
@@ -88,7 +106,7 @@ const Perfil = () => {
 
       const response = await axios.post("http://localhost:3001/perfil", updatedData, {
         headers: {
-          Authorization: `Bearer ${token}`, // Enviar el token en la cabecera
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -97,7 +115,7 @@ const Perfil = () => {
           title: "Perfil actualizado",
           icon: "success",
         }).then(() => {
-          history.push("/main"); // Redirigir al usuario a la página principal
+          navigate("/main"); // Redirigir a la página principal después de actualizar
         });
       } else {
         Swal.fire({
@@ -107,9 +125,10 @@ const Perfil = () => {
         });
       }
     } catch (err) {
+      console.error("Error al actualizar el perfil:", err); // Log para depuración
       Swal.fire({
         title: "Error",
-        text: err.message || "Hubo un problema al actualizar el perfil.",
+        text: err.response?.data?.message || "Hubo un problema al actualizar el perfil.",
         icon: "error",
       });
     }
@@ -117,7 +136,6 @@ const Perfil = () => {
 
   // Si está cargando o hubo un error
   if (loading) return <div>Cargando...</div>;
-
   if (error) return <div>{error}</div>;
 
   return (
@@ -207,9 +225,12 @@ const Perfil = () => {
           </div>
         )}
 
-        <button type="submit" className="btn btn-warning">
-          Actualizar Perfil
+        <button type="submit" className="btn btn-warning" disabled={loading}>
+          {loading ? "Cargando..." : "Actualizar Perfil"}
         </button>
+        <button type="button" className="btn btn-secondary" onClick={handleGoBack}>
+        Regresar
+      </button>
       </form>
     </div>
   );

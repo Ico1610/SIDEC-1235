@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles//index.css';
 import reportWebVitals from './reportWebVitals';
 import Login from './login';
-import Main from './main'; // Importa tu componente para la ruta '/main'
+import Main from './main';
+import Perfil from './Components/Perfil';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,7 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
         <Route path="/main" element={<Main />} />
+        <Route path="/perfil" element={<Perfil />} />
       </Routes>
     </Router>
   </React.StrictMode>
