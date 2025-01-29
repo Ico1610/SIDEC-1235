@@ -26,6 +26,7 @@ const Sidebar = () => {
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
+  
   // Función para alternar submenú individual
   const toggleSubmenu = (menu) => {
     setSubmenus((prevState) => ({
@@ -166,7 +167,7 @@ const Sidebar = () => {
             {submenus['ajustes'] && (
               <ul className="submenu-list">
                 <li className="submenu-item">
-                  <a href="/advanced/option1" className="submenu-link">
+                  <a href="/nuevousuario" className="submenu-link">
                     <FaUserPlus className="sidebar-icon" /> Nuevo Usuario
                   </a>
                 </li>

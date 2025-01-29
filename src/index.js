@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Login from './login';
 import Main from './main';
 import Perfil from './Components/Perfil';
+import NuevoUsuario from './Components/Nuevousuario';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
         <Route path="/" element={<Login />} />
         <Route path="/main" element={<Main />} />
         <Route path="/perfil" element={<Perfil />} />
+        <Route path="/ajustes/nuevousuario" element={<NuevoUsuario />} />
       </Routes>
     </Router>
   </React.StrictMode>
