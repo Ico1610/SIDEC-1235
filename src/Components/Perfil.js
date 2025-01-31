@@ -126,7 +126,7 @@ const Perfil = () => {
       <h1>Perfil de Usuario</h1>
       {/* Agregar logo de usuario aquí */}
       <div className="user-logo-1">
-        <img src="img/user_logo.png" alt="User" className="user-logo-1" />
+        <img src="" alt="User" className="user-logo-1" />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="user-form-1">
