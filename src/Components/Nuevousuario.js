@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-import "../styles/perfil.css"; // Importación del archivo CSS
 import Sidebar from "../Components/Sidebar"; // Importación del menú principal
 
 const NuevoUsuario = () => {

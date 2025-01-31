@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-import "../styles/perfil.css"; // Importación del archivo CSS
+import "../styles/perfil.module.css"; // Importación del archivo CSS
 import Sidebar from "../Components/Sidebar"; // Importación del menú principal
 
 const Perfil = () => {
@@ -121,35 +121,35 @@ const Perfil = () => {
   if (error) return <div className="error">{error}</div>;
 
   return (
-    <div className="profile-page">
+    <div className="menu-principal">
       <Sidebar /> {/* Menú principal */}
       <h1>Perfil de Usuario</h1>
       {/* Agregar logo de usuario aquí */}
-      <div className="user-logo">
-        <img src="img/user_logo.png" alt="User" className="logo-img" />
+      <div className="user-logo-1">
+        <img src="img/user_logo.png" alt="User" className="user-logo-1" />
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="user-form-1">
           <label>Usuario</label>
-          <input type="text" name="username" value={userData.username} className="form-control" disabled />
+          <input type="text" name="username" value={userData.username} className="user-form-1" disabled />
         </div>
 
-        <div className="form-group">
+        <div className="user-form-2">
           <label>Nombre</label>
-          <input type="text" name="nombre" value={userData.nombre} onChange={handleInputChange} className="form-control" required />
+          <input type="text" name="nombre" value={userData.nombre} onChange={handleInputChange} className="suser-form-2" required />
         </div>
 
-        <div className="form-group">
+        <div className="user-form-3">
           <label>Correo</label>
-          <input type="email" name="correo" value={userData.correo} onChange={handleInputChange} className="form-control" required />
+          <input type="email" name="correo" value={userData.correo} onChange={handleInputChange} className="user-form-3" required />
         </div>
 
-        <div className="form-group">
+        <div className="user-form-4">
           <label>Teléfono</label>
-          <input type="text" name="telefono" value={userData.telefono} onChange={handleInputChange} className="form-control" required />
+          <input type="text" name="telefono" value={userData.telefono} onChange={handleInputChange} className="user-form-4" required />
         </div>
 
-        <div className="form-group">
+        <div className="user-form-5">
           <label>¿Desea cambiar la contraseña?</label>
           <div>
             <input type="radio" name="cambiar_password" value="SI" onChange={handleChangePassword} /> Sí
@@ -158,14 +158,14 @@ const Perfil = () => {
         </div>
 
         {changePassword && (
-          <div className="form-group">
+          <div className="styles.form-group">
             <label>Contraseña</label>
-            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" required={changePassword} />
+            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="styles.form-control" required={changePassword} />
           </div>
         )}
 
-        <button type="submit" className="btn btn-primary">Actualizar Perfil</button>
-        <button type="button" className="btn btn-secondary" onClick={handleGoBack}>Regresar</button>
+        <button type="submit" className="styles.btn btn-primary">Actualizar Perfil</button>
+        <button type="button" className="styles.btn btn-secondary" onClick={handleGoBack}>Regresar</button>
       </form>
     </div>
   );
