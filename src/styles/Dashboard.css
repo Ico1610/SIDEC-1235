@@ -13,6 +13,12 @@
   padding: 20px;
   color: #000000;
 }
+.dashboard-title {
+  color: orange; /* Establece el color del texto a naranja */
+  font-size: 2rem; /* Ajusta el tamaño de la fuente, puedes modificarlo */
+  font-weight: bold; /* Hace el texto en negritas */
+  text-align: center; /* Centra el texto */
+}
 
 .dashboard-header {
   text-align: center;
@@ -27,33 +33,11 @@
   margin-bottom: 40px;
 }
 
-.dashboard-header h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+
 
 .dashboard-header p {
   font-size: 1.2rem;
   font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .dashboard-header h1 {
-    font-size: 2rem;
-  }
-
-  .dashboard-header p {
-    font-size: 1rem;
-  }
-}
-
-.statistics-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin: 30px 0;
 }
 
 .stat-card {
@@ -137,4 +121,22 @@
 
 .status-label.proceso {
   color: var(--color-proceso);
+}
+
+@media (max-width: 768px) {
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+
+  .dashboard-header p {
+    font-size: 1rem;
+  }
+}
+
+.statistics-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 30px 0;
 }

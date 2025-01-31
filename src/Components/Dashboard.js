@@ -29,7 +29,8 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1> Gestión eficiente y seguimiento detallado de denuncias.</h1>
+      <h1 className="dashboard-title">Gestión eficiente y seguimiento detallado de denuncias.</h1>
+
         <p>Tablero General</p>
       </header>
 
@@ -99,3 +100,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+ 

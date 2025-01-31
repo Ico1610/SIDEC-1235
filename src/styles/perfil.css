@@ -1,0 +1,85 @@
+/* Estilos generales */
+  .perfil-container {
+    background-color: #f2f2f2;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+  }
+  
+  .perfil-title {
+    font-size: 1.8rem;
+    color: #cc0808; /* titulo de perfil*/
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  
+  .perfil-logo {
+    margin-bottom: 20px;
+  }
+  
+  .perfil-logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .perfil-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .perfil-form-group label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .perfil-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.3s;
+  }
+  
+  .perfil-input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .perfil-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+  }
+  
+  .perfil-btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .perfil-btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .perfil-footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
