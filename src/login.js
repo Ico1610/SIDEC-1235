@@ -104,55 +104,56 @@ const Login = () => {
   };
 
   return (
-    <div className="container-fluid">
-      <div className="card">
+    <div className="login-container">
+      <div className="login-card">
         <img
           src="https://contraloria.durango.gob.mx/wp-content/uploads/2022/11/SECOED.svg"
           alt="Logo SECOED"
+          className="login-logo"
         />
-        <h1>Sistema Integral de Denuncias Ciudadana</h1>
+        <h1 className="login-title">Sistema Integral de Denuncias Ciudadana</h1>
         {isLoggedIn ? (
-          <h2>Bienvenido, {username}!</h2>
+          <h2 className="login-welcome">Bienvenido, {username}!</h2>
         ) : (
-          <form onSubmit={handleLogin}>
-            <label className="form-label" htmlFor="username">
+          <form onSubmit={handleLogin} className="login-form">
+            <label className="login-label" htmlFor="username">
               Usuario
             </label>
             <input
               type="text"
               id="username"
-              className="form-control"
+              className="login-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-            <label className="form-label" htmlFor="password">
+            <label className="login-label" htmlFor="password">
               Contraseña
             </label>
-            <div className="password-container">
+            <div className="password-wrapper">
               <input
                 type={showPassword ? 'text' : 'password'}
                 id="password"
-                className="form-control"
+                className="login-input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <button
                 type="button"
-                className="password-toggle"
+                className="password-toggle-btn"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? '👁️‍🗨️' : '🙈'}
               </button>
             </div>
-            <button type="submit" className="btn" disabled={loading}>
+            <button type="submit" className="login-btn" disabled={loading}>
               {loading ? 'Cargando...' : 'Iniciar sesión'}
             </button>
           </form>
         )}
-        <hr />
-        <div className="text-center">
+        <hr className="login-divider" />
+        <div className="login-footer">
           <a href="http://contraloria.durango.gob.mx/" target="_blank" rel="noopener noreferrer">
             &copy; SECOED 2022 - {new Date().getFullYear()}
           </a>
