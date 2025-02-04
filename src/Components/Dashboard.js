@@ -32,6 +32,10 @@ const Dashboard = () => {
       <h1 className="dashboard-title">SISTEMA INTEGRAL DE DENUNCIAS CIUDADANA</h1>
 
         <p> Gestión Eficiente Y Seguimiento Detallado De Denuncias</p>
+=======
+        <h1> Gestión eficiente y seguimiento detallado de denuncias.</h1>
+        <p>Tablero General</p>
+(estilos de peril y login)
       </header>
 
       <section className="statistics-container">
@@ -100,4 +104,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
- 

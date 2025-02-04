@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-import "../styles/perfil.css" // Nombre más específico para evitar conflictos
+import "../styles/perfilUsuario.module.css"; // Nombre más específico para evitar conflictos
 import Sidebar from "../Components/Sidebar";
-import userLogo from '../img/user_logo.jpg';
 
 const PerfilUsuario = () => {
   const [userData, setUserData] = useState({
@@ -124,11 +123,10 @@ const PerfilUsuario = () => {
   return (
     <div className="perfil-container">
       <Sidebar />
-      <h1 className="perfil-title">Perfil de Usuario</h1>
+      <h1>Perfil de Usuario</h1>
       <div className="perfil-logo">
-      <img src={userLogo} alt="User" className="perfil-logo-img" />
+        <img src="./img/user_logo.png" alt="User" className="perfil-logo-img" />
       </div>
-      
       <form onSubmit={handleSubmit}>
         <div className="perfil-form-group">
           <label>Usuario</label>
