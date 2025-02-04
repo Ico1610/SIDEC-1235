@@ -29,9 +29,9 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-      <h1 className="dashboard-title">Gestión eficiente y seguimiento detallado de denuncias.</h1>
+      <h1 className="dashboard-title">SISTEMA INTEGRAL DE DENUNCIAS CIUDADANA</h1>
 
-        <p>Tablero General</p>
+        <p> Gestión Eficiente Y Seguimiento Detallado De Denuncias</p>
       </header>
 
       <section className="statistics-container">
@@ -74,7 +74,7 @@ const Dashboard = () => {
       </section>
 
       <section className="detailed-reports">
-        <h2>Detalle de Denuncias por Institución</h2>
+        <h2 className="dashboard-subtitle">Detalle de Denuncias por Institución</h2>
         <div className="report-cards-container">
           {data.map((item, index) => (
             <div key={index} className="report-card">

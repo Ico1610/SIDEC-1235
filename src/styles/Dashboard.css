@@ -14,10 +14,10 @@
   color: #000000;
 }
 .dashboard-title {
-  color: orange; /* Establece el color del texto a naranja */
-  font-size: 2rem; /* Ajusta el tamaño de la fuente, puedes modificarlo */
-  font-weight: bold; /* Hace el texto en negritas */
-  text-align: center; /* Centra el texto */
+  color: rgb(0, 0, 0); /* primer titulo de la pagina */
+  font-size: 2rem; 
+  font-weight: bold; 
+  text-align: center; 
 }
 
 .dashboard-header {
@@ -29,22 +29,25 @@
   text-align: center;
   padding: 50px 20px; /* Espaciado alrededor */
   border-radius: 12px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); 
   margin-bottom: 40px;
 }
-
-
 
 .dashboard-header p {
   font-size: 1.2rem;
   font-style: italic;
 }
-
+.dashboard-subtitle{
+  color: rgb(0, 0, 0); 
+  font-size: 2rem; 
+  font-weight: bold; 
+  text-align: center; 
+}
 .stat-card {
   flex: 1;
   min-width: 200px;
   background: var(--color-bg);
-  padding: 20px;
+  padding: 30px;
   border-radius: 12px;
   text-align: center;
   box-shadow: var(--box-shadow);
