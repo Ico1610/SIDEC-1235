@@ -1,14 +1,4 @@
-/* Estilos de login con fondo casi transparente */
-body {
-    font-family: Arial, sans-serif;
-    background: url('https://contraloria.durango.gob.mx/wp-content/themes/mw-dependencia/assets/default.png') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* estilos solo de login */
 
 /* Contenedor del login */
 .login-container {
@@ -29,7 +19,7 @@ body {
     width: 100%;
     max-width: 450px;
     text-align: center;
-}
+} 
 
 /* Estilos del título */
 .login-title {
